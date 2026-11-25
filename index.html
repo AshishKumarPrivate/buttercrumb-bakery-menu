@@ -1,45 +1,61 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
-  <title>Buttercrumb Bakery Menu</title>
-  <style>
-    * { box-sizing:border-box }
-    body { margin:0; background:#fff8ec; color:#30251e; font:16px/1.55 system-ui,sans-serif }
-    main { width:min(100%,42rem); margin:auto; padding:1rem }
-    header { background:#482619; color:#fff4df; border-radius:1rem; padding:clamp(1.2rem,6vw,2.8rem) }
-    h1,h2,p { margin:0 }
-    h1,h2 { font-family:Georgia,serif }
-    h1 { font-size:clamp(2.1rem,8vw,3.9rem); line-height:1.04 }
-    header p { margin-top:.8rem }
-    nav { display:flex; flex-wrap:wrap; gap:.65rem; margin:1rem 0 }
-    nav a { color:inherit; text-decoration:none; background:#f2e1c6; border-radius:3rem; padding:.55rem .9rem }
-    section { margin-top:1.4rem }
-    .dish { display:grid; grid-template-columns:1fr auto; gap:.2rem 1rem; margin-top:.65rem; background:#fffefa; border:1px solid #eee0ce; border-radius:.8rem; padding:.85rem 1rem }
-    .dish p { grid-column:1/-1; color:#62554c }
-    .price { white-space:nowrap; font-variant-numeric:tabular-nums }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#fff8ed">
+<title>Buttercrumb Bakery Menu</title>
+<style>
+*{box-sizing:border-box}
+:root{color-scheme:light;--paper:#fff8ed;--ink:#332419;--brown:#48271b;--green:#315542;--border:#eadac7}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,sans-serif}
+main{width:min(100% - 2rem,65rem);margin:auto;padding:1rem 0 3rem}
+header{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:end;min-height:clamp(250px,45vw,410px);padding:clamp(1.4rem,5vw,3.5rem);color:#fff8ed;background:var(--brown);border-radius:1.5rem}
+header img,header::after{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+header img{object-fit:cover;object-position:center 47%}
+header::after{content:"";background:linear-gradient(85deg,#261307ed 0%,#261307a8 46%,#26130726 100%)}
+h1,h2,h3,p{margin:0} h1,h2{font-family:Georgia,serif;line-height:1.04}
+h1{font-size:clamp(2.55rem,8.8vw,6rem);letter-spacing:-.055em;max-width:9ch;text-wrap:balance}
+header p{margin-top:.7rem} .hours{font-size:.9rem;color:#ffe5c2}
+nav{position:sticky;top:0;z-index:1;display:flex;gap:.65rem;padding:.8rem 0;background:var(--paper)}
+nav a{color:inherit;text-decoration:none;background:#f2e4d2;border-radius:4rem;padding:.46rem .9rem;font-weight:650}
+nav a:hover,nav a:focus-visible{background:var(--brown);color:#fff8ed}
+section{scroll-margin-top:4.4rem;margin-top:1.25rem}
+h2{font-size:clamp(1.8rem,4.5vw,2.75rem);margin-bottom:.9rem;letter-spacing:-.035em}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.dish{overflow:hidden;border-radius:1rem;background:#fffefa;border:1px solid var(--border)}
+.photo{aspect-ratio:16/10;overflow:hidden;background:#ead5be}
+.photo img{display:block;width:100%;height:100%;object-fit:cover}
+.copy{padding:1rem;display:grid;gap:.45rem}
+h3{font-size:1.16rem;line-height:1.25}.copy p{color:#655548}
+.price{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.price strong{font-size:1.12rem}.price del{color:#695a52}
+.deal{border-radius:1rem;background:#e1eddf;color:var(--green);padding:.16rem .55rem;font-size:.84rem;font-weight:750}
+@media(max-width:580px){.grid{grid-template-columns:1fr;gap:.8rem}.dish{display:grid;grid-template-columns:minmax(100px,35%) 1fr}.photo{height:100%;min-height:134px;aspect-ratio:auto}.copy{padding:.8rem}}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}header>div,.dish{animation:enter .55s ease-out both}.dish:nth-child(2){animation-delay:.1s}.photo img{transition:transform .38s ease}.dish:hover img{transform:scale(1.06)}nav a{transition:background-color .2s,color .2s}}
+@keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
 </head>
 <body>
-  <main>
-    <header>
-      <h1>Buttercrumb Bakery</h1>
-      <p>Fresh bakes and coffee</p>
-      <p>Daily, 8 AM to 7 PM</p>
-    </header>
-    <nav aria-label="Menu categories"><a href="#bakes">Fresh bakes</a><a href="#coffee">Coffee</a></nav>
-    <section id="bakes" aria-labelledby="bakes-heading">
-      <h2 id="bakes-heading">Fresh bakes</h2>
-      <article class="dish"><strong>Butter Croissant</strong><span class="price">₹95</span><p>Flaky, golden and baked fresh.</p></article>
-      <article class="dish"><strong>Chocolate Brownie</strong><span class="price">₹120</span><p>Dark chocolate with a fudgy centre.</p></article>
-    </section>
-    <section id="coffee" aria-labelledby="coffee-heading">
-      <h2 id="coffee-heading">Coffee</h2>
-      <article class="dish"><strong>Cappuccino</strong><span class="price">₹140</span><p>Espresso with steamed milk.</p></article>
-      <article class="dish"><strong>Cold Coffee</strong><span class="price">₹160</span><p>Chilled coffee blended with milk.</p></article>
-    </section>
-  </main>
+<main>
+<header>
+<img src="images/croissant.webp" alt="" fetchpriority="high" width="720" height="480">
+<div><h1>Buttercrumb Bakery</h1><p>Fresh bakes and coffee</p><p class="hours">Daily, 8 AM to 7 PM</p></div>
+</header>
+<nav aria-label="Menu categories"><a href="#bakes">Fresh bakes</a><a href="#coffee">Coffee</a></nav>
+<section id="bakes" aria-labelledby="bakes-heading">
+<h2 id="bakes-heading">Fresh bakes</h2>
+<div class="grid">
+<article class="dish"><div class="photo"><img src="images/croissant.webp" alt="Golden butter croissants" width="720" height="480"></div><div class="copy"><h3>Butter Croissant</h3><p>Flaky, golden and baked fresh.</p><div class="price"><strong>₹95</strong><del aria-label="Originally 120 rupees">₹120</del><span class="deal">Save ₹25</span></div></div></article>
+<article class="dish"><div class="photo"><img src="images/brownie.webp" alt="Fudgy chocolate brownies" width="720" height="480" loading="lazy"></div><div class="copy"><h3>Chocolate Brownie</h3><p>Dark chocolate with a fudgy centre.</p><div class="price"><strong>₹120</strong></div></div></article>
+</div></section>
+<section id="coffee" aria-labelledby="coffee-heading">
+<h2 id="coffee-heading">Coffee</h2>
+<div class="grid">
+<article class="dish"><div class="photo"><img src="images/cappuccino.webp" alt="Cappuccino with latte art" width="720" height="480" loading="lazy"></div><div class="copy"><h3>Cappuccino</h3><p>Espresso with steamed milk.</p><div class="price"><strong>₹140</strong></div></div></article>
+<article class="dish"><div class="photo"><img src="images/cold-coffee.webp" alt="Iced coffee in a clear glass" width="720" height="480" loading="lazy"></div><div class="copy"><h3>Cold Coffee</h3><p>Chilled coffee blended with milk.</p><div class="price"><strong>₹160</strong><del aria-label="Originally 190 rupees">₹190</del><span class="deal">Save ₹30</span></div></div></article>
+</div></section>
+</main>
 </body>
 </html>
